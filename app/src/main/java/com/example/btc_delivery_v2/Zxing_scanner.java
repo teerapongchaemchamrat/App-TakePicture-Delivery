@@ -36,12 +36,10 @@ public class Zxing_scanner extends AppCompatActivity {
                     String[] inputArr = scannedData.split("/");
                     String co_num = inputArr[0];
                     String co_line = inputArr[1];
-                    //String cust_po = inputArr[2];
 
                     Intent intent = new Intent();
                     intent.putExtra("co_num", co_num);
                     intent.putExtra("co_line", co_line);
-                    //intent.putExtra("cust_po", cust_po);
                     setResult(RESULT_OK, intent);
                     finish();
                 }
