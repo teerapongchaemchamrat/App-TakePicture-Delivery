@@ -93,8 +93,7 @@ public class MainActivity extends AppCompatActivity {
                             Manifest.permission.CAMERA
                     }, 100);
                 }
-//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(intent,100);
+
                 dispatchTakePictureIntent1();
             }
         });
@@ -107,8 +106,7 @@ public class MainActivity extends AppCompatActivity {
                             Manifest.permission.CAMERA
                     }, 200);
                 }
-//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(intent,200);
+
                 dispatchTakePictureIntent2();
             }
 
@@ -122,8 +120,7 @@ public class MainActivity extends AppCompatActivity {
                             Manifest.permission.CAMERA
                     }, 300);
                 }
-//                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//                startActivityForResult(intent,300);
+
                 dispatchTakePictureIntent3();
             }
         });
@@ -246,7 +243,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            //trackingButtonPhoto1 = false;
         }
         if(requestCode == 200){
             try {
@@ -255,7 +251,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            //trackingButtonPhoto2 = false;
         }
         if(requestCode == 300){
             try {
@@ -264,17 +259,14 @@ public class MainActivity extends AppCompatActivity {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            //trackingButtonPhoto3 = false;
         }
         if(requestCode == 400){
             try {
                 if(resultCode == RESULT_OK){
                     String strText0 = data.getStringExtra("co_num");
                     String strText1 = data.getStringExtra("co_line");
-                    //String strText2 = data.getStringExtra("cust_po");
                     txt_co.setText(strText0);
                     txt_line.setText(strText1);
-                    //txt_po.setText(strText2);
                 }
             } catch (Exception e){
                 e.printStackTrace();
@@ -315,9 +307,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initializeRetrofit() {
         Retrofit retrofit = new Retrofit.Builder()
-                //.baseUrl("http://49.0.65.4:3003/") // Replace with your API endpoint URL
-                .baseUrl("http://192.168.1.25:83/") // Replace with your API endpoint URL
-                //.baseUrl("http://192.168.10.27:5000/") // Replace with your API endpoint URL
+                .baseUrl("http://XX.XX.XX.XX:XX/") // Replace with your API endpoint URL
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -330,23 +320,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.this, "upload image1 is value NULL" , Toast.LENGTH_LONG).show();
             return;
         }
-//        if (imageFile2 == null) {
-//            Toast.makeText(MainActivity.this, "upload image2 is value NULL" , Toast.LENGTH_LONG).show();
-//            return;
-//        }
-//        if (imageFile3 == null) {
-//            Toast.makeText(MainActivity.this, "upload image3 is value NULL" , Toast.LENGTH_LONG).show();
-//            return;
-//        }
 
         RequestBody requestBody1 = RequestBody.create(MediaType.parse("image1/jpeg"), imageFile1);
         filePart1 = MultipartBody.Part.createFormData("file1", imageFile1.getName(), requestBody1);
-
-//        RequestBody requestBody2 = RequestBody.create(MediaType.parse("image2/jpeg"), imageFile2);
-//        filePart2 = MultipartBody.Part.createFormData("file2", imageFile2.getName(), requestBody2);
-//
-//        RequestBody requestBody3 = RequestBody.create(MediaType.parse("image3/jpeg"), imageFile3);
-//        filePart3 = MultipartBody.Part.createFormData("file3", imageFile3.getName(), requestBody3);
         filePart2 = null;
         filePart3 = null;
 
